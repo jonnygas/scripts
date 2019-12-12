@@ -5,6 +5,7 @@ of the Endpoints.
 """
 import acitoolkit.acitoolkit as aci
 from tabulate import tabulate
+import json
 
 
 def main():
@@ -37,7 +38,11 @@ def main():
         data.append((ep.if_name, tenant.name))
 
     # Display the data downloaded
-    print(tabulate(data, headers=["INTERFACE", "TENANT"]))
+    print (tabulate(data, headers=["INTERFACE", "TENANT"]))
+
+    #write data to file
+    with open("data.json", "w") as outfile:
+        json.dump(data, outfile, indent=4, sort_keys=True)
 
 
 if __name__ == '__main__':
